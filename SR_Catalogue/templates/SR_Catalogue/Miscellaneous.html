@@ -1,0 +1,108 @@
+{% extends 'SR_Catalogue/Basic.html' %}
+
+{% block title %}  Remotes {% endblock %}
+
+{% block css %}
+table {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+        margin-top: 7px;
+    }
+
+    td {
+        text-align: center;
+        color: white;
+        font-weight: bold;
+    }
+
+    tr {
+        background-color: #00264a;
+    }
+
+    h5,
+    h1 {
+        padding-top: 10px;
+        font-weight: bolder;
+        text-align: center;
+
+    }
+
+    a:hover {
+        color: whitesmoke;
+    }
+
+    h1 {
+        font-size: 300%;
+        font-family: fantasy;
+
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .overlapcontainer {
+        position: relative;
+        width: 25%;
+    }
+
+    .image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #00264a;
+    }
+
+    .container:hover .overlay {
+        opacity: 1;
+
+    }
+    button, p{
+        margin-top: 10px;
+    }
+{% endblock %}
+
+{% block body %}
+ <h1 style="background-color: #f6b319;">Miscellaneous</h1>
+{% load static %}
+<div class="container-fluid">
+    {% if flag == True %}
+    {% for i in Miscellaneous %}
+    <div class="row mb-2">
+        <div class="col-sm-6 col-md-6 col-6 pt-3" align="center">
+
+              <img src="/media/{{i.Image}}" alt="image" height="100" width="100">
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-1 shadow-sm h-md-250 position-relative">
+            <div class="col py-3 px-4 d-flex flex-column position-static">
+              <strong class="d-inline-block text-dark">{{i.Name}}</strong>
+              <strong class="d-inline-block mb-2 text-dark">{{i.Category}}</strong>
+              <p class="card-text mb-auto">Price: {{i.Price}} <br> Quantity: {{i.Quantity}} </p>
+
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+     {% endif %}
+    {% if flag == False %}
+        <h2 align="center" style="padding: 60px; font-weight: bold; text-align: center;">{{desc}}</h2>
+    {% endif %}
+</div>
+
+{% endblock %}
