@@ -75,34 +75,32 @@ table {
     }
 {% endblock %}
 
+
 {% block body %}
- <h1 style="background-color: #f6b319;">LED Components</h1>
+<h1 style="background-color: #ffffff;">LED Component</h1>
 {% load static %}
 <div class="container-fluid">
     {% if flag == True %}
+    <div class="row">
     {% for i in LED %}
-    <div class="row mb-2">
-        <div class="col-sm-6 col-md-6 col-6 pt-3" align="center">
+    {%cycle '1' '2' as count silent%}
 
-              <img src="/media/{{i.Image}}" alt="image" height="100" width="100">
+        <div class="col-md-6 col-sm-6 col-6 border py-2 px-1" align="center" >
+            <a href="{{i.id}}" style="color:#000000">
+                <img src="/media/{{i.Image1}}" alt="image" height="110" width="130">
+                <p class="card-text text-wrap text-truncate " style="font-weight:bold">{{i.Name}}</p>
+                <span class="card-text text-wrap text-break">{{i.Category}}</span>
+            </a>
         </div>
 
-        <div class="col-md-6 col-sm-6 col-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-1 shadow-sm h-md-250 position-relative">
-            <div class="col py-3 px-4 d-flex flex-column position-static">
-              <strong class="d-inline-block text-dark">{{i.Name}}</strong>
-              <strong class="d-inline-block mb-2 text-dark">{{i.Category}}</strong>
-              <p class="card-text mb-auto">Price: {{i.Price}} <br> Quantity: {{i.Quantity}} </p>
-
-            </div>
-          </div>
-        </div>
-    </div>
+    {% if count == '2' %}
+    </div><div class="row">
+    {% endif %}
     {% endfor %}
-     {% endif %}
+    {% endif %}
     {% if flag == False %}
         <h2 align="center" style="padding: 60px; font-weight: bold; text-align: center;">{{desc}}</h2>
     {% endif %}
+    </div>
 </div>
-
 {% endblock %}

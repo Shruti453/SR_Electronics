@@ -1,0 +1,73 @@
+{% extends 'SR_Catalogue/Basic.html' %}
+
+{% block title %}  {{product.Name}} {% endblock %}
+{% block css %}
+    a{
+        text-decoration:None;
+        color: #000000;
+    }
+{% endblock %}
+
+{% block body %}
+<a href="{{back}}" class="px-2" style="font-weight:bold; font-size: 200%"> < </a>
+<span class="px-1" style="font-weight:bold">{{product.Name}}</span>
+<div class="container-fluid">
+    <div class="row pt-3" align="center">
+        <div class="col-12">
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  {%if product.Image2 and product.Image3%}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  {% endif %}
+                  {%if not product.Image3 and product.Image2 %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  {% endif %}
+                  {%if product.Image3 and not product.Image2 %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  {% endif %}
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="/media/{{product.Image1}}" class="d-block w-100" alt="{{product.Name}}" height="230" width="200">
+                </div>
+                        {%if product.Image2%}
+                <div class="carousel-item">
+                  <img src="/media/{{product.Image2}}" class="d-block w-100" alt="{{product.Name}}" height="230" width="200">
+                </div>
+                        {% endif %}
+
+                        {%if product.Image3 %}
+
+                <div class="carousel-item">
+                  <img src="/media/{{product.Image3}}" class="d-block w-100" alt="{{product.Name}}" height="230" width="200">
+                </div>
+                        {% endif %}
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+
+            <div class="card-body pt-4">
+              <p class="card-text text-break">{{product.Category}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
